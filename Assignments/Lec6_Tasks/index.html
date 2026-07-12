@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burair Ali Hussain — Portfolio</title>
+<style>
+  :root {
+    --bg: #0e1b1c;
+    --bg-alt: #12262a;
+    --card: #16302f;
+    --text: #eaf2ef;
+    --text-dim: #a9c2bc;
+    --accent: #d9a15b;
+    --accent-2: #6fb3a0;
+    --border: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+    color: var(--text);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
+
+  header.hero {
+    padding: 4.5rem 0 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  header.hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  header.hero .tagline {
+    color: var(--accent);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-top: 0.6rem;
+    font-weight: 500;
+  }
+  header.hero .location {
+    color: var(--text-dim);
+    margin-top: 0.4rem;
+    font-size: 0.95rem;
+  }
+  header.hero .cta-row {
+    margin-top: 1.8rem;
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.65rem 1.4rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #1a1206;
+  }
+  .btn-outline {
+    border: 1px solid var(--accent-2);
+    color: var(--accent-2);
+  }
+  .btn:hover { transform: translateY(-2px); opacity: 0.92; }
+
+  section { padding: 3.2rem 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.6rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  section h2::before {
+    content: "";
+    width: 6px;
+    height: 24px;
+    background: var(--accent);
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.2rem;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.3rem;
+  }
+  .skill-card h3 {
+    font-size: 1rem;
+    color: var(--accent-2);
+    margin-bottom: 0.7rem;
+  }
+  .skill-card ul { list-style: none; }
+  .skill-card li {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.4rem;
+  }
+  .skill-card li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .projects-list { display: flex; flex-direction: column; gap: 1rem; }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.3rem 1.5rem;
+  }
+  .project-card h3 {
+    font-size: 1.05rem;
+    color: var(--text);
+  }
+  .project-card .role {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .project-card p {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+  }
+  .project-card ul {
+    margin-top: 0.4rem;
+    padding-left: 1.1rem;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .contact-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem 1.3rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.15s ease;
+  }
+  .contact-card:hover { border-color: var(--accent-2); }
+  .contact-card .label {
+    display: block;
+    color: var(--accent-2);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.3rem;
+  }
+  .contact-card .value {
+    font-size: 0.92rem;
+    word-break: break-word;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 0 2.5rem;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 480px) {
+    header.hero { padding: 3rem 0 2rem; }
+    section { padding: 2.4rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Burair Ali Hussain</h1>
+    <p class="tagline">Mind Science Coach · Copywriter · Data Analyst · AI-Driven Builder</p>
+    <p class="location">Multan, Punjab, Pakistan</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:burairahussain@gmail.com">Get in Touch</a>
+      <a class="btn btn-outline" href="https://linktr.ee/burairalihussain" target="_blank" rel="noopener">View Portfolio</a>
+    </div>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Mind Sciences & Coaching</h3>
+        <ul>
+          <li>NLP (Neuro-Linguistic Programming)</li>
+          <li>Silva Method (Certified Trainer)</li>
+          <li>4th Dimension (Level 2)</li>
+          <li>Meditation & Mindfulness Training</li>
+          <li>Reiki</li>
+          <li>Law of Attraction Coaching</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Content & Copy</h3>
+        <ul>
+          <li>Copywriting (persuasion-led, science-meets-spirituality framing)</li>
+          <li>Content Strategy</li>
+          <li>Prompt Design / Prompt Engineering</li>
+          <li>YouTube Content Creation (Urdu/Hindi mind sciences education)</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Data & Technical</h3>
+        <ul>
+          <li>Data Analysis (Certified)</li>
+          <li>Python (Data Analysis, Crash Course)</li>
+          <li>Facebook Advertising (Advanced)</li>
+          <li>AI-Assisted Development — Claude Code, agentic tooling (in progress, Panaversity AI-101, through Aug 2026)</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Sales & Business</h3>
+        <ul>
+          <li>Insurance sales — fresh & repeat sales exceeding 5 crore PKR (Adamjee Life)</li>
+          <li>Entrepreneurship & business growth advisory</li>
+          <li>Team building, research, project planning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+    <div class="projects-list">
+
+      <div class="project-card">
+        <span class="role">Customer Services Representative</span>
+        <h3>Adamjee Life Assurance Co. Ltd</h3>
+        <p>Corporate insurance sales role; also the source of an internal AI project currently in development — an agentic tool proposal for the company.</p>
+      </div>
+
+      <div class="project-card">
+        <span class="role">Founder / CEO</span>
+        <h3>Mind Sciences Academy</h3>
+        <p>Coaching and mentoring platform for personal & business development, built on Silva Method and mind sciences training.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>Mind Sciences Substack <span class="role" style="display:inline;">(in development)</span></h3>
+        <p>Publication at the intersection of mind sciences, coaching, and business performance — targeting B2C and B2B audiences.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>AI Project Pipeline <span class="role" style="display:inline;">(active, via Panaversity AI-101)</span></h3>
+        <ul>
+          <li>AI appointment setter</li>
+          <li>Content automation pipeline</li>
+          <li>Internal agentic tool proposal for Adamjee Life</li>
+        </ul>
+      </div>
+
+      <div class="project-card">
+        <h3>Startup Concepts <span class="role" style="display:inline;">(stress-tested, wellness/performance space)</span></h3>
+        <ul>
+          <li>B2B stress analytics platform — highest-ranked for fundability</li>
+          <li>Clinician-facing protocol tool — highest-ranked for fundability</li>
+          <li>Content licensing layer for wellness apps</li>
+          <li>Cohort-based Mind Sciences school — near-term cash flow focus</li>
+        </ul>
+      </div>
+
+      <div class="project-card">
+        <h3>PSX Investment Tracker</h3>
+        <p>Interactive Chart.js tool tracking a ₨1 crore SIP milestone, with a segmented portfolio (growth, dividend, tactical) across holdings including MEBL, EFERT, and ATLH.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>Equity Research — Adamjee Insurance Company (AICL)</h3>
+        <p>Six-year financial analysis using the FY2025 Annual Report — ratio analysis, valuation, and qualitative assessment.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>Silva Method Book <span class="role" style="display:inline;">(concept stage)</span></h3>
+        <p>Identified as the strongest asymmetric content opportunity given his unique certification.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>"The 230Hz Method"</h3>
+        <p>YouTube script connecting bumblebee resonance physics to manifestation and meditation, built on the chakra-to-neuroscience framework.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:burairahussain@gmail.com">
+        <span class="label">Email</span>
+        <span class="value">burairahussain@gmail.com</span>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/burairalihussain" target="_blank" rel="noopener">
+        <span class="label">LinkedIn</span>
+        <span class="value">linkedin.com/in/burairalihussain</span>
+      </a>
+      <a class="contact-card" href="https://www.burairalihussain.com" target="_blank" rel="noopener">
+        <span class="label">Website</span>
+        <span class="value">burairalihussain.com</span>
+      </a>
+      <a class="contact-card" href="https://linktr.ee/burairalihussain" target="_blank" rel="noopener">
+        <span class="label">Portfolio</span>
+        <span class="value">linktr.ee/burairalihussain</span>
+      </a>
+      <a class="contact-card" href="https://mentoga.com/burairalihussain" target="_blank" rel="noopener">
+        <span class="label">Booking</span>
+        <span class="value">mentoga.com/burairalihussain</span>
+      </a>
+      <div class="contact-card" style="cursor:default;">
+        <span class="label">Social</span>
+        <span class="value">@burairalihussain (Facebook, Instagram, TikTok)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Burair Ali Hussain. All rights reserved.
+</footer>
+
+</body>
+</html>
